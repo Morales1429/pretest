@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/user")
 @CrossOrigin(origins = "http://localhost:3000")
@@ -37,5 +39,11 @@ public class UserController {
             return new ResponseEntity(HttpStatus.OK);
         }
         return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<UserEntity>> findAll(){
+        List<UserEntity> users = userService.findALL();
+        return ResponseEntity.ok(users);
     }
 }

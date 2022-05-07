@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,5 +40,10 @@ public class UserService {
     public boolean checkPassword(String username, String password) {
         UserEntity user = findByUsername(username);
         return UserUtils.isPasswordEqual(user.getPassword(), password);
+    }
+
+    public List<UserEntity> findALL() {
+        List<UserEntity> users = userRepository.findAll();
+        return users;
     }
 }
